@@ -70,7 +70,7 @@ void BlobStorage::GetObsoleteFiles(std::vector<std::string>* obsolete_files,
                                    SequenceNumber oldest_sequence) {
   MutexLock l(&mutex_);
   ROCKS_LOG_INFO(db_options_.info_log, "Entering GetObsoleteFiles with input %" PRIu64 " and sequence %" PRIu64 ".",
-  obsolete_files->size(), oldest_sequence);
+  obsolete_files ? obsolete_files->size() : 0, oldest_sequence);
 
   uint32_t file_dropped = 0;
   uint64_t file_dropped_size = 0;
