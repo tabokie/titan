@@ -580,6 +580,7 @@ Status BlobGCJob::RewriteValidKeyToLSM() {
 Status BlobGCJob::DeleteInputBlobFiles() {
   SequenceNumber obsolete_sequence = base_db_impl_->GetLatestSequenceNumber();
 
+  ROCKS_LOG_INFO(db_options_.info_log, "Entering DeleteInputBlobFiles");
   Status s;
   VersionEdit edit;
   edit.SetColumnFamilyID(blob_gc_->column_family_handle()->GetID());
